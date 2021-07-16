@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.ac.inha.mapper.MemberMapper">
+    <insert id="processAddMember" parameterType="String" >
+        INSERT Into final_member (ID,PW, NICKNAME, NAME, MAIL, HELLO) values (#{id},#{pw}, #{nickname}, #{name}, #{mail}, #{hello})
+    </insert>
+
+    <select id="processLoginMember" parameterType="String" resultType="kr.ac.inha.dto.MemberDto">
+        SELECT * FROM final_member WHERE ID = #{id} AND PW = #{pw}
+    </select>
+
+    <update id="processUpdateMember" parameterType="kr.ac.inha.dto.MemberDto">
+        UPDATE final_member SET
+            ID = #{id},
+            PW = #{pw},
+            NICKNAME = #{nickname},
+            NAME = #{name},
+            MAIL = #{mail},
+            HELLO = #{hello}
+            WHERE ID = #{id}
+    </update>
+
+    <delete id="deleteMember" parameterType="String">
+        DELETE FROM final_member WHERE ID = #{id}
+    </delete>
+</mapper>
